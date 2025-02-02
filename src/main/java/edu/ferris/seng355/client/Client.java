@@ -1,4 +1,6 @@
-package edu.ferris.seng355;
+package edu.ferris.seng355.client;
+
+import edu.ferris.seng355.stock.Stock;
 
 import java.util.List;
 
