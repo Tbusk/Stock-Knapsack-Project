@@ -1,23 +1,45 @@
 package edu.ferris.seng355.items;
 
-public class Stock extends Item
- {
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-    double price;
-    double priceIncreaseProbability;
-    double possibleNewPrice;
+@JsonIgnoreProperties(value = {
+        "weight",
+        "value"
+})
+public class Stock extends Item {
+
+    private double price;
+    private double priceIncreaseProbability;
+    private double possibleNewPrice;
 
     public Stock(double price, double priceIncreaseProbability, double possibleNewPrice) {
+        super(price, (possibleNewPrice - price) * priceIncreaseProbability);
         this.price = price;
         this.possibleNewPrice = possibleNewPrice;
         this.priceIncreaseProbability = priceIncreaseProbability;
-        setWeight(price);
-        setValue(calculateStockValue());
     }
 
-    private double calculateStockValue() {
-        return (price - possibleNewPrice) * priceIncreaseProbability;
-    }
+     public double getPrice() {
+         return price;
+     }
 
+     public void setPrice(double price) {
+         this.price = price;
+     }
 
-}
+     public double getPriceIncreaseProbability() {
+         return priceIncreaseProbability;
+     }
+
+     public void setPriceIncreaseProbability(double priceIncreaseProbability) {
+         this.priceIncreaseProbability = priceIncreaseProbability;
+     }
+
+     public double getPossibleNewPrice() {
+         return possibleNewPrice;
+     }
+
+     public void setPossibleNewPrice(double possibleNewPrice) {
+         this.possibleNewPrice = possibleNewPrice;
+     }
+ }
