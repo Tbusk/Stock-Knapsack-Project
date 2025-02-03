@@ -1,5 +1,6 @@
 package edu.ferris.seng355;
 
+import edu.ferris.seng355.csv.RandomStockCSVBuilder;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
