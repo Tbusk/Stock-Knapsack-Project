@@ -12,6 +12,8 @@ public class Stock extends Item {
     private double priceIncreaseProbability;
     private double possibleNewPrice;
 
+    public Stock(){}
+
     public Stock(double price, double priceIncreaseProbability, double possibleNewPrice) {
         super(price, (possibleNewPrice - price) * priceIncreaseProbability);
         this.price = price;
@@ -41,5 +43,10 @@ public class Stock extends Item {
 
      public void setPossibleNewPrice(double possibleNewPrice) {
          this.possibleNewPrice = possibleNewPrice;
+     }
+
+     @Override
+    public String toString() {
+        return String.format("Price: %f, Potential New Price: %f, Likelihood of Price Increase: %f", price, possibleNewPrice, priceIncreaseProbability);
      }
  }
