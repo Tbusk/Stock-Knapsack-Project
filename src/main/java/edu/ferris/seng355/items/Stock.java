@@ -47,6 +47,6 @@ public class Stock extends Item {
 
      @Override
     public String toString() {
-        return String.format("Price: %f, Potential New Price: %f, Likelihood of Price Increase: %f", price, possibleNewPrice, priceIncreaseProbability);
+        return String.format("Price: %f, Potential New Price: %f, Likelihood of Price Increase: %f, Value: %f", price, possibleNewPrice, priceIncreaseProbability, getValue());
      }
  }
