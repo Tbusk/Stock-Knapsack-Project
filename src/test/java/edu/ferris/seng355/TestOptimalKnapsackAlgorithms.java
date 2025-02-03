@@ -20,7 +20,7 @@ class TestOptimalKnapsackAlgorithms {
     }
 
     @Test
-    void testGreedyKnapsackAlgorithmWithTenStock() throws IOException {
+    void testOptimalKnapsackAlgorithmWithTenStock() throws IOException {
         double budget = 2_500;
         List<Stock> availableStock = stockDataImporter.getStocksWithWeightsAndValuesFromCSV("stock_data/10-stocks-data.csv");
 
@@ -37,7 +37,7 @@ class TestOptimalKnapsackAlgorithms {
     }
 
     @Test
-    void testGreedyKnapsackAlgorithmWithTwentyFiveStock() throws IOException {
+    void testOptimalKnapsackAlgorithmWithTwentyFiveStock() throws IOException {
         double budget = 2_500;
         List<Stock> availableStock = stockDataImporter.getStocksWithWeightsAndValuesFromCSV("stock_data/25-stocks-data.csv");
 
@@ -54,7 +54,7 @@ class TestOptimalKnapsackAlgorithms {
     }
 
     @Test
-    void testGreedyKnapsackAlgorithmWithFiftyStock() throws IOException {
+    void testOptimalKnapsackAlgorithmWithFiftyStock() throws IOException {
         double budget = 2_500;
         List<Stock> availableStock = stockDataImporter.getStocksWithWeightsAndValuesFromCSV("stock_data/50-stocks-data.csv");
 
@@ -71,7 +71,7 @@ class TestOptimalKnapsackAlgorithms {
     }
 
     @Test
-    void testGreedyKnapsackAlgorithmWithOneHundredStock() throws IOException {
+    void testOptimalKnapsackAlgorithmWithOneHundredStock() throws IOException {
         double budget = 2_500;
         List<Stock> availableStock = stockDataImporter.getStocksWithWeightsAndValuesFromCSV("stock_data/100-stocks-data.csv");
 
@@ -88,7 +88,7 @@ class TestOptimalKnapsackAlgorithms {
     }
 
     @Test
-    void testGreedyKnapsackAlgorithmWithTwoHundredFiftyStock() throws IOException {
+    void testOptimalKnapsackAlgorithmWithTwoHundredFiftyStock() throws IOException {
         double budget = 2_500;
         List<Stock> availableStock = stockDataImporter.getStocksWithWeightsAndValuesFromCSV("stock_data/250-stocks-data.csv");
 
@@ -105,7 +105,7 @@ class TestOptimalKnapsackAlgorithms {
     }
 
     @Test
-    void testGreedyKnapsackAlgorithmWithFiveHundredStock() throws IOException {
+    void testOptimalKnapsackAlgorithmWithFiveHundredStock() throws IOException {
         double budget = 2_500;
         List<Stock> availableStock = stockDataImporter.getStocksWithWeightsAndValuesFromCSV("stock_data/500-stocks-data.csv");
 
@@ -122,7 +122,7 @@ class TestOptimalKnapsackAlgorithms {
     }
 
     @Test
-    void testGreedyKnapsackAlgorithmWithOneThousandStock() throws IOException {
+    void testOptimalKnapsackAlgorithmWithOneThousandStock() throws IOException {
         double budget = 2_500;
         List<Stock> availableStock = stockDataImporter.getStocksWithWeightsAndValuesFromCSV("stock_data/1000-stocks-data.csv");
 
@@ -139,7 +139,7 @@ class TestOptimalKnapsackAlgorithms {
     }
 
     @Test
-    void testGreedyKnapsackAlgorithmWithFiveThousandStock() throws IOException {
+    void testOptimalKnapsackAlgorithmWithFiveThousandStock() throws IOException {
         double budget = 2_500;
         List<Stock> availableStock = stockDataImporter.getStocksWithWeightsAndValuesFromCSV("stock_data/5000-stocks-data.csv");
 
@@ -156,7 +156,7 @@ class TestOptimalKnapsackAlgorithms {
     }
 
     @Test
-    void testGreedyKnapsackAlgorithmWithTenThousandStock() throws IOException {
+    void testOptimalKnapsackAlgorithmWithTenThousandStock() throws IOException {
         double budget = 2_500;
         List<Stock> availableStock = stockDataImporter.getStocksWithWeightsAndValuesFromCSV("stock_data/10000-stocks-data.csv");
 
@@ -173,7 +173,7 @@ class TestOptimalKnapsackAlgorithms {
     }
 
     @Test
-    void testGreedyKnapsackAlgorithmWithFifteenThousandStock() throws IOException {
+    void testOptimalKnapsackAlgorithmWithFifteenThousandStock() throws IOException {
         double budget = 2_500;
         List<Stock> availableStock = stockDataImporter.getStocksWithWeightsAndValuesFromCSV("stock_data/15000-stocks-data.csv");
 
