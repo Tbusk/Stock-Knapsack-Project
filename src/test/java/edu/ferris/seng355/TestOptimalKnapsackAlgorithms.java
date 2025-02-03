@@ -1,6 +1,5 @@
 package edu.ferris.seng355;
 
-import edu.ferris.seng355.algorithms.GreedyKnapsackAlgorithm;
 import edu.ferris.seng355.algorithms.OptimalKnapsackAlgorithm;
 import edu.ferris.seng355.csv.StockDataImporter;
 import edu.ferris.seng355.items.Stock;
