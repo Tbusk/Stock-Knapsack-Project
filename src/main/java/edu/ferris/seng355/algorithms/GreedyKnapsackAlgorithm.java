@@ -10,17 +10,20 @@ import java.util.List;
 public class GreedyKnapsackAlgorithm implements KnapsackAlgorithm {
 
     @Override
-    public Knapsack collect(List<Item> availableItems, double maxWeight) {
+    public Knapsack collect(List<? extends Item> availableItems, double maxWeight) {
         availableItems.sort(new ItemValueComparator().reversed());
 
         Knapsack knapsack = new Knapsack(maxWeight);
 
-        double remaining = maxWeight;
+        double totalWeight = 0;
 
         for (Item item: availableItems) {
-            if(Double.compare(item.getWeight(), remaining) <= 0) {
+
+            double totalWeightWithItem = totalWeight + item.getWeight();
+
+            if(Double.compare(maxWeight, totalWeightWithItem) >= 0) {
                 knapsack.getItems().add(item);
-                remaining -= item.getWeight();
+                totalWeight += item.getWeight();
             }
         }
 
