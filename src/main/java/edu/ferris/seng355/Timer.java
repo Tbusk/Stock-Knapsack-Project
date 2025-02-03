@@ -17,6 +17,6 @@ public class Timer {
     }
 
     public long getDurationInMS() {
-        return Duration.between(startTime, endTime).get(ChronoUnit.MILLIS);
+        return Duration.between(startTime, endTime).toMillis();
     }
 }
