@@ -6,5 +6,5 @@ import edu.ferris.seng355.knapsack.Knapsack;
 import java.util.List;
 
 public interface KnapsackAlgorithm {
-     Knapsack collect(List<Item> availableItems, double maxWeight);
+     Knapsack collect(List<? extends Item> availableItems, double maxWeight);
 }
