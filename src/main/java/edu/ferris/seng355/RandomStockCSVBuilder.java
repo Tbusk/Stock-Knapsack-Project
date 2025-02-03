@@ -26,7 +26,7 @@ public class RandomStockCSVBuilder {
     public void buildCsv(int numberOfStocks) throws IOException {
         CsvMapper mapper = new CsvMapper();
         byte[] csv = mapper.writer(buildCsvSchemaForStock()).writeValueAsBytes(generateRandomStockData(numberOfStocks));
-        Files.write(Path.of(String.format("%d-stocks-data.csv", numberOfStocks)), csv);
+        Files.write(Path.of(String.format("stock_data/%d-stocks-data.csv", numberOfStocks)), csv);
     }
 
     public List<Stock> generateRandomStockData(int numberOfStocks) {
