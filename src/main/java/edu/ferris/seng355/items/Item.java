@@ -1,4 +1,4 @@
-package edu.ferris.seng355;
+package edu.ferris.seng355.items;
 
 public class Item {
 

@@ -1,8 +1,13 @@
-package edu.ferris.seng355;
+package edu.ferris.seng355.algorithms;
+
+import edu.ferris.seng355.items.Item;
+import edu.ferris.seng355.items.ItemValueComparator;
+import edu.ferris.seng355.knapsack.Knapsack;
+
 
 import java.util.List;
 
-public class GreedyKnapsackAlgorithm implements KnapsackAlgorithm{
+public class GreedyKnapsackAlgorithm implements KnapsackAlgorithm {
 
     @Override
     public Knapsack collect(List<Item> availableItems, double maxWeight) {

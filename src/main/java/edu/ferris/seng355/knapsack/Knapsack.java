@@ -1,4 +1,6 @@
-package edu.ferris.seng355;
+package edu.ferris.seng355.knapsack;
+
+import edu.ferris.seng355.items.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +10,7 @@ public class Knapsack{
     private double maxWeight;
     private List<Item> items;
 
-    Knapsack(double maxWeight) {
+    public Knapsack(double maxWeight) {
         this.maxWeight = maxWeight;
         items = new ArrayList<>();
     }
