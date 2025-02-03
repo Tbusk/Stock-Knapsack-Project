@@ -1,4 +1,4 @@
-package edu.ferris.seng355;
+package edu.ferris.seng355.csv;
 
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
@@ -14,6 +14,17 @@ import java.util.List;
 
 public class RandomStockCSVBuilder {
 
+
+    public void buildCsv(int numberOfStocks) throws IOException {
+
+        String fileName = String.format("stock_data/%d-stocks-data.csv", numberOfStocks);
+        Path filePath = Path.of(fileName);
+
+        byte[] csvByteData = new CsvMapper().writer(buildCsvSchemaForStock()).writeValueAsBytes(generateRandomStockData(numberOfStocks));
+
+        Files.write(filePath, csvByteData);
+    }
+
     public CsvSchema buildCsvSchemaForStock() {
         return CsvSchema.builder()
                 .addColumn("price")
@@ -21,12 +32,6 @@ public class RandomStockCSVBuilder {
                 .addColumn("priceIncreaseProbability")
                 .build()
                 .withHeader();
-    }
-
-    public void buildCsv(int numberOfStocks) throws IOException {
-        CsvMapper mapper = new CsvMapper();
-        byte[] csv = mapper.writer(buildCsvSchemaForStock()).writeValueAsBytes(generateRandomStockData(numberOfStocks));
-        Files.write(Path.of(String.format("stock_data/%d-stocks-data.csv", numberOfStocks)), csv);
     }
 
     public List<Stock> generateRandomStockData(int numberOfStocks) {
