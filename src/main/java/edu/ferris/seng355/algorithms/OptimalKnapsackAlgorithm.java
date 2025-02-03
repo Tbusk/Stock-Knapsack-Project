@@ -24,7 +24,7 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
 
         System.out.printf("# of Solutions: %,d\nMax Value: $%,.2f\n", totalItems.longValue(), maxProfit);
 
-        return new Knapsack(maxWeight);
+        return knapsack;
 
     }
 
