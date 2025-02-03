@@ -4,76 +4,62 @@ import edu.ferris.seng355.items.Item;
 import edu.ferris.seng355.knapsack.Knapsack;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-
-// Algorithm Source: https://medium.com/@fabianterh/how-to-solve-the-knapsack-problem-with-dynamic-programming-eb88c706d3cf
 public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
 
     @Override
-    public Knapsack collect(List<Item> availableItems, double maxWeight) {
-        int numberOfItems = availableItems.size();
-
+    public Knapsack collect(List<? extends Item> availableItems, double maxWeight) {
         int[] weights = availableItems.stream().mapToInt(item -> (int) (item.getWeight() * 100)).toArray();
         int[] values = availableItems.stream().mapToInt(item -> (int) (item.getValue() * 100)).toArray();
 
         int maximumWeight = (int) (maxWeight * 100);
 
-        HashMap<Integer, List<Item>> potentialKnapsacks = new HashMap<>();
-
-        int[][] table = new int[numberOfItems + 1][numberOfItems + 1];
-
-        for (int item = 1; item <= numberOfItems; item++){
-            List<Item> knapsack = new ArrayList<>();
-            for (int capacity = 1; capacity < maximumWeight;) {
-                int maxValueWithoutItem = table[item - 1][capacity];
-                int maxValueWithItem = 0;
-                int currentItemWeight = weights[item - 1];
-
-                if(maximumWeight > currentItemWeight + capacity) {
-                    maxValueWithItem = values[item - 1];
-
-                    int remainingCapacity = capacity - currentItemWeight;
-                    maxValueWithItem += table[item - 1][remainingCapacity];
-
-
-                    if(maxValueWithItem > maxValueWithoutItem) {
-                        capacity += currentItemWeight;
-                        knapsack.add(availableItems.get(item - 1));
-                    }
-                }
-
-                table[item][capacity] = Math.max(maxValueWithoutItem, maxValueWithItem);
-            }
-            potentialKnapsacks.put(item - 1, knapsack);
+        if(maximumWeight <= 0 || weights.length == 0 || values.length == 0 ||  weights.length != values.length) {
+            return null;
         }
 
-        return getHighestEarningStock(potentialKnapsacks, maxWeight);
+        List<Item> itemsInSolution = new ArrayList<>();
+        AtomicInteger totalItems = new AtomicInteger();
 
-    }
+        int maxProfit = knapsackRecursive(values, weights, maximumWeight, 0, availableItems, totalItems, itemsInSolution);
 
-    public Knapsack getHighestEarningStock(HashMap<Integer, List<Item>> potentialOptions, double maxWeight) {
         Knapsack knapsack = new Knapsack(maxWeight);
-        int numberOfOptions = potentialOptions.size();
-        int keyOfMax = -1;
-        double maxTotal = -1;
+        knapsack.getItems().addAll(itemsInSolution);
 
-        for(int index = 0; index < numberOfOptions; index++) {
-            double currentTotal = getTotalItemValue(potentialOptions.get(index));
+        System.out.printf("# of Solutions: %,d\n, Max Value: $%,.2f", totalItems.longValue(), ((double) maxProfit / 100.0));
 
-            if(maxTotal < currentTotal) {
-                keyOfMax = index;
-                maxTotal = currentTotal;
-            }
-        }
+        return new Knapsack(maxWeight);
 
-        knapsack.getItems().addAll(potentialOptions.get(keyOfMax));
-
-        return knapsack;
     }
 
-    public double getTotalItemValue(List<Item> items) {
-        return items.stream().mapToDouble(Item::getValue).sum();
+    private int knapsackRecursive(int[] values, int[] weights, int maxValue, int currentIndex, List<? extends Item> allItems, AtomicInteger totalItems, List<Item> currentItems) {
+        if(maxValue <= 0 || currentIndex >= values.length) {
+            // Accumulator - will get total number of solutions. If you want to store all solutions, you'd replace totalItems type with List<List<? extends Item>>.
+            totalItems.addAndGet(1);
+            return 0;
+        }
+
+        int firstValue = 0;
+        List<Item> includedItemsWithCurrent = new ArrayList<>(currentItems);
+        if( weights[currentIndex] <= maxValue) {
+            includedItemsWithCurrent.add(allItems.get(currentIndex));
+            firstValue = values[currentIndex] + knapsackRecursive(values, weights, maxValue - weights[currentIndex], currentIndex + 1, allItems, totalItems, includedItemsWithCurrent);
+        }
+
+        List<Item> includedItemsWithoutCurrent = new ArrayList<>(currentItems);
+        int secondValue = knapsackRecursive(values, weights, maxValue, currentIndex + 1, allItems, totalItems, includedItemsWithoutCurrent);
+
+        if (firstValue > secondValue) {
+            currentItems.clear();
+            currentItems.addAll(includedItemsWithCurrent);
+            return firstValue;
+        } else {
+            currentItems.clear();
+            currentItems.addAll(includedItemsWithoutCurrent);
+            return secondValue;
+        }
+
     }
 }
