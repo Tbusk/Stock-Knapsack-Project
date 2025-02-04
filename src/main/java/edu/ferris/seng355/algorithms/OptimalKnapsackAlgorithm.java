@@ -34,7 +34,9 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
         }
 
         List<Item> includedItemsWithCurrent = new ArrayList<>(currentItems);
-        if( weights.get(currentIndex) <= maxValue) {
+        double currentWeight = weights.get(currentIndex);
+
+        if(currentWeight <= maxValue) {
 
             Item currentItem = allItems.get(currentIndex);
             includedItemsWithCurrent.add(currentItem);
