@@ -13,13 +13,13 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
     public Knapsack collect(List<? extends Item> availableItems, double maxWeight) {
         List<Double> values = getValuesFrom(availableItems);
         List<Double> weights = getWeightsFrom(availableItems);
-        List<Item> itemsInSolution = new ArrayList<>();
+        List<Item> itemsForKnapsack = new ArrayList<>();
         AtomicInteger totalSolutions = new AtomicInteger();
 
-        knapsackRecursive(values, weights, maxWeight, 0, availableItems, totalSolutions, itemsInSolution);
+        knapsackRecursive(values, weights, maxWeight, 0, availableItems, totalSolutions, itemsForKnapsack);
 
         Knapsack knapsack = new Knapsack(maxWeight);
-        knapsack.addAllItems(itemsInSolution);
+        knapsack.addAllItems(itemsForKnapsack);
 
         printNumberOfSolutions(totalSolutions);
 
