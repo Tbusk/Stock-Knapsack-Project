@@ -11,9 +11,8 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
 
     @Override
     public Knapsack collect(List<? extends Item> availableItems, double maxWeight) {
-        List<Double> weights = availableItems.stream().map(Item::getWeight).toList();
-        List<Double> values = availableItems.stream().map(Item::getValue).toList();
-
+        List<Double> values = getValuesFrom(availableItems);
+        List<Double> weights = getWeightsFrom(availableItems);
         List<Item> itemsInSolution = new ArrayList<>();
         AtomicInteger totalSolutions = new AtomicInteger();
 
@@ -28,20 +27,18 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
 
     }
 
-    private static void printNumberOfSolutions(AtomicInteger totalSolutions) {
-        System.out.printf("# of Solutions: %,d\n", totalSolutions.longValue());
-    }
-
     private void knapsackRecursive(List<Double> values, List<Double> weights, double maxValue, int currentIndex, List<? extends Item> allItems, AtomicInteger totalSolutions, List<Item> currentItems) {
         if(maxValue <= 0 || currentIndex >= values.size()) {
-            // Accumulator - will get total number of solutions. If you want to store all solutions, you'd replace totalSolutions type with List<List<? extends Item>>.
             totalSolutions.addAndGet(1);
             return;
         }
 
         List<Item> includedItemsWithCurrent = new ArrayList<>(currentItems);
         if( weights.get(currentIndex) <= maxValue) {
-            includedItemsWithCurrent.add(allItems.get(currentIndex));
+
+            Item currentItem = allItems.get(currentIndex);
+            includedItemsWithCurrent.add(currentItem);
+
             knapsackRecursive(values, weights, maxValue - weights.get(currentIndex), currentIndex + 1, allItems, totalSolutions, includedItemsWithCurrent);
         }
 
@@ -56,7 +53,20 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
         } else {
             resetAndAddCurrentItems(currentItems, includedItemsWithoutCurrent);
         }
+    }
 
+    private List<Double> getValuesFrom(List<? extends Item> availableItems) {
+        return availableItems.stream().map(Item::getValue).toList();
+    }
+
+    private List<Double> getWeightsFrom(List<? extends Item> availableItems) {
+        return availableItems.stream()
+                .map(Item::getWeight)
+                .toList();
+    }
+
+    private static void printNumberOfSolutions(AtomicInteger totalSolutions) {
+        System.out.printf("# of Solutions: %,d\n", totalSolutions.longValue());
     }
 
     private static double getItemsTotal(List<Item> includedItemsWithCurrent) {
