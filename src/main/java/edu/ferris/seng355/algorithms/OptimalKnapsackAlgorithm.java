@@ -77,8 +77,8 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
                 .sum();
     }
 
-    private void resetAndAddCurrentItems(List<Item> currentItems, List<Item> includedItemsWithCurrent) {
+    private void resetAndAddCurrentItems(List<Item> currentItems, List<Item> itemsToAdd) {
         currentItems.clear();
-        currentItems.addAll(includedItemsWithCurrent);
+        currentItems.addAll(itemsToAdd);
     }
 }
