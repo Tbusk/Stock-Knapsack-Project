@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Knapsack{
 
-    private double maxWeight;
-    private List<Item> items;
+    private final double maxWeight;
+    private final List<Item> items;
 
     public Knapsack(double maxWeight) {
         this.maxWeight = maxWeight;
