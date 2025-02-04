@@ -18,12 +18,9 @@ public class RandomStockCSVBuilder {
 
     public void buildCsv(int numberOfStocks) throws IOException {
 
-        String fileName = String.format("%s/%d-stocks-data.csv", DESTINATION_FOLDER, numberOfStocks);
-        Path filePath = Path.of(fileName);
-
         byte[] csvByteData = new CsvMapper().writer(buildCsvSchemaForStock()).writeValueAsBytes(generateRandomStockData(numberOfStocks));
 
-        Files.write(filePath, csvByteData);
+        Files.write(getCsvFilePath(numberOfStocks), csvByteData);
     }
 
     public CsvSchema buildCsvSchemaForStock() {
@@ -51,6 +48,14 @@ public class RandomStockCSVBuilder {
                 getRandomStockIncreasePercentage(),
                 getRandomNewPossiblePrice()
         );
+    }
+
+    private Path getCsvFilePath(int numberOfStocks) {
+        return Path.of(buildCSVFileName(numberOfStocks));
+    }
+    
+    public String buildCSVFileName(int numberOfStocks) {
+        return String.format("%s/%d-stocks-data.csv", DESTINATION_FOLDER, numberOfStocks);
     }
 
     // Stock price can be between $1 and $100
