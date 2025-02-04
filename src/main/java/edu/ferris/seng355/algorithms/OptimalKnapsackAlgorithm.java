@@ -20,7 +20,7 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
         double maxProfit = knapsackRecursive(values, weights, maxWeight, 0, availableItems, totalSolutions, itemsInSolution);
 
         Knapsack knapsack = new Knapsack(maxWeight);
-        knapsack.getItems().addAll(itemsInSolution);
+        knapsack.addAllItems(itemsInSolution);
 
         System.out.printf("# of Solutions: %,d\nMax Value: $%,.2f\n", totalSolutions.longValue(), maxProfit);
 
