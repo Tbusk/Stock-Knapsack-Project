@@ -48,9 +48,8 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
         List<Item> includedItemsWithoutCurrent = new ArrayList<>(currentItems);
         knapsackRecursive(values, weights, maxValue, currentIndex + 1, allItems, totalSolutions, includedItemsWithoutCurrent);
 
-
-        double firstValue = includedItemsWithCurrent.stream().mapToDouble(Item::getValue).sum();
-        double secondValue = includedItemsWithoutCurrent.stream().mapToDouble(Item::getValue).sum();
+        double firstValue = getItemsTotal(includedItemsWithCurrent);
+        double secondValue = getItemsTotal(includedItemsWithoutCurrent);
 
         if(firstValue > secondValue) {
             resetAndAddCurrentItems(currentItems, includedItemsWithCurrent);
@@ -58,6 +57,12 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
             resetAndAddCurrentItems(currentItems, includedItemsWithoutCurrent);
         }
 
+    }
+
+    private static double getItemsTotal(List<Item> includedItemsWithCurrent) {
+        return includedItemsWithCurrent.stream()
+                .mapToDouble(Item::getValue)
+                .sum();
     }
 
     private static void resetAndAddCurrentItems(List<Item> currentItems, List<Item> includedItemsWithCurrent) {
