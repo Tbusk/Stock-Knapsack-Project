@@ -14,10 +14,11 @@ import java.util.List;
 
 public class RandomStockCSVBuilder {
 
+    public static String DESTINATION_FOLDER = "stock_data";
 
     public void buildCsv(int numberOfStocks) throws IOException {
 
-        String fileName = String.format("stock_data/%d-stocks-data.csv", numberOfStocks);
+        String fileName = String.format("%s/%d-stocks-data.csv", DESTINATION_FOLDER, numberOfStocks);
         Path filePath = Path.of(fileName);
 
         byte[] csvByteData = new CsvMapper().writer(buildCsvSchemaForStock()).writeValueAsBytes(generateRandomStockData(numberOfStocks));
