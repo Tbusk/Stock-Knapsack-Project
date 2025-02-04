@@ -22,4 +22,12 @@ public class Knapsack{
     public double getMaxWeight() {
         return maxWeight;
     }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public void addAllItems(List<Item> items) {
+        this.items.addAll(items);
+    }
 }
