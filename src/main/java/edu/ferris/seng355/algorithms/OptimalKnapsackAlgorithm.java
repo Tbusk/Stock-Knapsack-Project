@@ -27,7 +27,7 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
 
     }
 
-    private void knapsackRecursive(List<Double> values, List<Double> weights, double maxValue, int currentIndex, List<? extends Item> allItems, AtomicInteger totalSolutions, List<Item> currentItems) {
+    private void knapsackRecursive(List<Double> values, List<Double> weights, double maxValue, int currentIndex, List<? extends Item> availableItems, AtomicInteger totalSolutions, List<Item> currentItems) {
         if(maxValue <= 0 || currentIndex >= values.size()) {
             totalSolutions.addAndGet(1);
             return;
@@ -38,14 +38,14 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
 
         if(currentWeight <= maxValue) {
 
-            Item currentItem = allItems.get(currentIndex);
+            Item currentItem = availableItems.get(currentIndex);
             includedItemsWithCurrent.add(currentItem);
 
-            knapsackRecursive(values, weights, maxValue - weights.get(currentIndex), currentIndex + 1, allItems, totalSolutions, includedItemsWithCurrent);
+            knapsackRecursive(values, weights, maxValue - weights.get(currentIndex), currentIndex + 1, availableItems, totalSolutions, includedItemsWithCurrent);
         }
 
         List<Item> includedItemsWithoutCurrent = new ArrayList<>(currentItems);
-        knapsackRecursive(values, weights, maxValue, currentIndex + 1, allItems, totalSolutions, includedItemsWithoutCurrent);
+        knapsackRecursive(values, weights, maxValue, currentIndex + 1, availableItems, totalSolutions, includedItemsWithoutCurrent);
 
         double firstValue = getItemsTotal(includedItemsWithCurrent);
         double secondValue = getItemsTotal(includedItemsWithoutCurrent);
