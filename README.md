@@ -24,4 +24,4 @@ Software Engineering Tools (SENG 355) Group Project
 | Optimal Time (ms)              | 16     | 2,575    |          |          |          |          |          |           |           |           |
 | Optimal Value (usd)            | 345.28 | 473.25   |          |          |          |          |          |           |           |           |
 | Optimal Weight (current price) | 366.58 | 872.13   |          |          |          |          |          |           |           |           |
-| Optimal (Calculations)         | 2^10   | 2^25     | 2^50     | 2^100    | 2^250    | 2^500    | 2^1,000  | 2^5,000   | 2^10,000  | 2^15,000  |
+| Optimal (Solutions)            | 2^10   | 2^25     | 2^50     | 2^100    | 2^250    | 2^500    | 2^1,000  | 2^5,000   | 2^10,000  | 2^15,000  |
