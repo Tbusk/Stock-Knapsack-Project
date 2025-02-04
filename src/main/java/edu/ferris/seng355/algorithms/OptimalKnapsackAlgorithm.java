@@ -67,17 +67,17 @@ public class OptimalKnapsackAlgorithm implements KnapsackAlgorithm {
                 .toList();
     }
 
-    private static void printNumberOfSolutions(AtomicInteger totalSolutions) {
+    private void printNumberOfSolutions(AtomicInteger totalSolutions) {
         System.out.printf("# of Solutions: %,d\n", totalSolutions.longValue());
     }
 
-    private static double getItemsTotal(List<Item> includedItemsWithCurrent) {
+    private double getItemsTotal(List<Item> includedItemsWithCurrent) {
         return includedItemsWithCurrent.stream()
                 .mapToDouble(Item::getValue)
                 .sum();
     }
 
-    private static void resetAndAddCurrentItems(List<Item> currentItems, List<Item> includedItemsWithCurrent) {
+    private void resetAndAddCurrentItems(List<Item> currentItems, List<Item> includedItemsWithCurrent) {
         currentItems.clear();
         currentItems.addAll(includedItemsWithCurrent);
     }
