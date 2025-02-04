@@ -22,7 +22,7 @@ public class GreedyKnapsackAlgorithm implements KnapsackAlgorithm {
             double totalWeightWithItem = totalWeight + item.getWeight();
 
             if(Double.compare(maxWeight, totalWeightWithItem) >= 0) {
-                knapsack.getItems().add(item);
+                knapsack.addItem(item);
                 totalWeight += item.getWeight();
             }
         }
