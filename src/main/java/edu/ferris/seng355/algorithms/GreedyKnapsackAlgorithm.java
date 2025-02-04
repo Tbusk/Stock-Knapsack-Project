@@ -19,14 +19,18 @@ public class GreedyKnapsackAlgorithm implements KnapsackAlgorithm {
 
         for (Item item: availableItems) {
 
-            double totalWeightWithItem = totalWeight + item.getWeight();
+            double weightWithItem = getWeightWithItem(item.getWeight(), totalWeight);
 
-            if(Double.compare(maxWeight, totalWeightWithItem) >= 0) {
+            if(Double.compare(maxWeight, weightWithItem) >= 0) {
                 knapsack.addItem(item);
                 totalWeight += item.getWeight();
             }
         }
 
         return knapsack;
+    }
+
+    private double getWeightWithItem(double itemWeight, double totalWeight) {
+        return itemWeight + totalWeight;
     }
 }
