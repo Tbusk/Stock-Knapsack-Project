@@ -13,13 +13,17 @@ public class StockDataImporter {
     public List<Stock> getStocksWithWeightsAndValuesFromCSV(String fileNameWithPath) throws IOException {
         List<Stock> stocks = getStocksFromCSV(fileNameWithPath);
 
+        updateStockWeightsAndValues(stocks);
+
+        return stocks;
+    }
+
+    private void updateStockWeightsAndValues(List<Stock> stocks) {
         stocks.forEach(stock -> {
             double value = (stock.getPossibleNewPrice() - stock.getPrice()) * stock.getPriceIncreaseProbability();
             stock.setValue(value);
             stock.setWeight(stock.getPrice());
         });
-
-        return stocks;
     }
 
     public List<Stock> getStocksFromCSV(String fileNameWithPath) throws IOException {
