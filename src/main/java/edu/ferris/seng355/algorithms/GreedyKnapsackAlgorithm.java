@@ -15,6 +15,12 @@ public class GreedyKnapsackAlgorithm implements KnapsackAlgorithm {
 
         Knapsack knapsack = new Knapsack(maxWeight);
 
+        addItemsToKnapsack(availableItems, maxWeight, knapsack);
+
+        return knapsack;
+    }
+
+    private void addItemsToKnapsack(List<? extends Item> availableItems, double maxWeight, Knapsack knapsack) {
         double totalWeight = 0;
 
         for (Item item: availableItems) {
@@ -26,8 +32,6 @@ public class GreedyKnapsackAlgorithm implements KnapsackAlgorithm {
                 totalWeight += item.getWeight();
             }
         }
-
-        return knapsack;
     }
 
     private double getWeightWithItem(double itemWeight, double totalWeight) {
