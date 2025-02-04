@@ -1,5 +1,6 @@
 package edu.ferris.seng355.csv;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import edu.ferris.seng355.items.Stock;
@@ -18,9 +19,17 @@ public class RandomStockCSVBuilder {
 
     public void buildCsv(int numberOfStocks) throws IOException {
 
-        byte[] csvByteData = new CsvMapper().writer(buildCsvSchemaForStock()).writeValueAsBytes(generateRandomStockData(numberOfStocks));
+        byte[] csvByteData = getCsvByteData(numberOfStocks);
 
         Files.write(getCsvFilePath(numberOfStocks), csvByteData);
+    }
+
+    private byte[] getCsvByteData(int numberOfStocks) throws JsonProcessingException {
+        List<Stock> stocks = generateRandomStockData(numberOfStocks);
+        
+        return new CsvMapper()
+                .writer(buildCsvSchemaForStock())
+                .writeValueAsBytes(stocks);
     }
 
     public CsvSchema buildCsvSchemaForStock() {
