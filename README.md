@@ -16,7 +16,7 @@ Software Engineering Tools (SENG 355) Group Project
 
 ## Algorithm Comparisons
 
-x = too long to run
+x = too long to run / cpu / memory limitations reached
 
 | Stocks                         | 10     | 25       | 50       | 100      | 250      | 500      | 1,000    | 5,000     | 10,000    | 15,000    |
 |--------------------------------|--------|----------|----------|----------|----------|----------|----------|-----------|-----------|-----------|
@@ -27,3 +27,6 @@ x = too long to run
 | Optimal Value (usd)            | 345.28 | 473.25   | x        | x        | x        | x        | x        | x         | x         | x         |
 | Optimal Weight (current price) | 366.58 | 872.13   | x        | x        | x        | x        | x        | x         | x         | x         |
 | Optimal (Solutions)            | 2^10   | 2^25     | 2^50     | 2^100    | 2^250    | 2^500    | 2^1,000  | 2^5,000   | 2^10,000  | 2^15,000  |
+| DP Time (ms)                   | 14     | 301      | 2,565    | 13,205   | 61,969   | 144,142  | 333,139  | x         | x         | x         |
+| DP Value (usd)                 | 345.28 | 473.25   | 1,360.02 | 2,248.65 | 2,886.51 | 2,820.16 | 3,298.88 | x         | x         | x         |
+| DP Weight (current price)      | 336.58 | 872.13   | 1,583.41 | 2,493.08 | 2,497.68 | 2,485.88 | 2,477.08 | x         | x         | x         |
